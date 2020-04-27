@@ -1,0 +1,74 @@
+{% load static %}
+<footer>
+  <div class="container-fluid footer">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="order-1 col-4 col-md my-auto">
+          <img class="img-fluid" src="{% static 'images/logo-trn.png' %}" alt="">
+        </div>
+        <div class="order-2 col-8 col-md-auto my-auto no-gutters px-3">
+          <ul class="footer__items">
+            <li class="footer__items-lable">@2019 ТОО "Lightwork"</li>
+            <li>Усть-Каменогорск, Казахстан</li>
+            <li>Стань автором блога</li>
+            <a href="//blog.lightwork.kz/politika-konfidencialnosti/"><li>Политика обработки персональных данных</li></a>
+          </ul>
+        </div>
+        <div class="order-3 order-md-3 col-6 col-md-auto my-auto ">
+          <ul class="footer__items">
+            <li class="footer__items-lable">Наши направления</li>
+            <a href="//gruzchiki.lightwork.kz"><li class="green">Грузчики и разнорабочие</li></a>
+            <a href="//master.lightwork.kz"><li class="orange">Мастер на час</li></a>
+            <a href="//cleaning.lightwork.kz"><li class="blue">Клининг</li></a>
+          </ul>
+        </div>
+        <div class="order-5 order-md-4 col-6 col-md my-auto text-left pt-3 pt-md-0">
+          <ul class="footer__tags">
+            {% for tags in article_tags %}
+            {% if forloop.counter > 5 %}
+            {% else %}
+            <li><a href="{% url 'post_category' tag=tags.slug %}">#{{ tags.title }}</a></li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="order-6 order-md-5 col-6 col-md my-auto pt-3 pt-md-0 text-left">
+          <ul class="footer__tags">
+            {% for tags in article_tags %}
+            {% if forloop.counter < 6 %}
+            {% else %}
+            <li><a href="{% url 'post_category' tag=tags.slug %}">#{{ tags.title }}</a></li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="order-4 order-md-6 col-6 col-md-auto my-auto">
+          <div class="footer__contacts">
+            <span class="footer__contacts-lable">Наши контактные данные</span>
+            <div class="row no-gutters">
+              <div class="col-auto no-gutters my-auto">
+                <i class="footer__contacts-mob-icon fa fa-mobile text-left pr-2" aria-hidden="true"></i>
+              </div>
+              <div class="col-auto no-gutters my-auto">
+                <a href="tel:+77773169691"><span class="my-auto footer__contacts-phone">8 777 316 96 91</span></a>
+              </div>
+            </div>
+            <span class="footer__contacts-email text-uppercase">blog@lightwork.kz</span>
+            <div class="footer__contacts-social">
+              <a class="link-unstyled" href="//vk.com/gruzchiki.lightwork">
+                <div class="footer__contacts-social-item rounded my-auto text-center">
+                  <i class="fa fa-vk fa-fw white" aria-hidden="true"></i>
+                </div>
+              </a>
+              <a class="link-unstyled" href="//instagram.com/gruzchiki_lightwork_uka">
+                <div class="footer__contacts-social-item rounded my-auto text-center">
+                  <i class="fa fa-instagram fa-fw white" aria-hidden="true"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

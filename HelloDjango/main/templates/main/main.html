@@ -1,0 +1,134 @@
+{% extends "main/wrapper.html" %}
+
+{% block content %}
+{% load static %}
+<title>Ремонт своими руками, квартирный переезд своими силами: инструкции и советы - Lightwork Блог</title>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NLSZZ9K"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+{% include "main/header.html" %}
+<main class="pb-5">
+  <!-- Blog Tags -->
+  <container class="blog__tags">
+    <div class="container pt-5">
+      <!-- Blog Tags Title -->
+      <span class="blog__tags-title">Настрой свой поток</span>
+      <!-- Blog Tags Options -->
+      <div class="row mx-1 blog__tags-options">
+        {% for tags in article_tags %}
+        {% if tag == tags.slug%}
+        <div class="col-sm-5th col-xs-6">
+          <a href="{% url 'post_category' tag=tags.slug %}" class="link-unstyled">
+          <div class="row">
+            <div class="blog__tags-option bg-{{tags.color}} col text-center pt-2 pb-2 pl-1 pr-1 mr-3">
+              #{{tags.title}}
+            </div>
+          </div>
+          </a>
+        </div>
+        {% else %}
+        <div class="col-sm-5th col-xs-6">
+          <a href="{% url 'post_category' tag=tags.slug %}" class="link-unstyled">
+          <div class="row">
+            <div class="blog__tags-option col text-center pt-2 pb-2 pl-1 pr-1 mr-3">
+              #{{tags.title}}
+            </div>
+          </div>
+          </a>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </container>
+
+  <!-- Blog Posts -->
+  <container class="blog__posts">
+    <div class="container">
+      
+    {% if article_list %}
+    <div class="row mt-5">
+      {% for post in article_list %}
+      <div class="col-md-6 col-lg-4 col-sm-6 blog__post-wrapper" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+        <a itemprop="mainEntityOfPage" class="link-unstyled" href="{% url 'article_detail' slug=post.slug %}">
+          <!-- Blog Post Preview -->
+          <div class="blog__post-preview-hidden shadow pb-2 m-0 rounded p-2 mr-3" style= "background-color:
+          {% if post.tag.color == 'orange'%}
+          #ff9c00;
+          {% elif post.tag.color == 'green'%}
+          #75a24f;
+          {% elif post.tag.color == 'blue'%}
+          #26295c;
+          {% else %}
+          #75a24f;
+          {% endif %}">
+            <div class="row pb-2">
+              <div class="blog__post-preview-tag text-center p-1 col-sm-6 col-md-4 col-6 rounded ml-3">
+                #<div class="d-inline-block" itemprop="articleSection" >{{post.tag}}</div>
+              </div>
+            </div>
+
+            <div class="d-none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    			<meta itemprop="address" content="Усть-Каменогорск">
+    			<meta itemprop="telephone" content="8 777 316 96 91">
+    			<div class="d-none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        			<img class="d-none" itemprop="url image" src="//blog.lightwork.kz/static/images/logo.png"/>
+            		<meta itemprop="width" content="192">
+            		<meta itemprop="height" content="138">
+        		</div>
+        		<meta itemprop="name" content="Lightwork">
+        	 </div>
+
+            <span class="mt-2 blog__post-preview-title" itemprop="headline">{{post.title}}</span>
+            <p itemprop="description" class="blog__post-preview-content pt-3">{{post.description|safe|truncatechars:350}}</p>
+
+            <div class="py-4"></div>
+          </div>
+        </a>
+          <!-- Blog Post -->
+          <div class="blog__post shadow pt-1 mb-3" >
+            <!-- Blog Post Tag -->
+            <div class="blog__post-tag text-center p-2 col-sm-4 col-4 p-sm-1 rounded mt-1 ml-2"
+            style= "
+            background-color:
+            {% if post.tag.color == 'orange'%}
+            #ff9c00;
+            {% elif post.tag.color == 'green'%}
+            #75a24f;
+            {% elif post.tag.color == 'blue'%}
+            #26295c;
+            {% else %}
+            #75a24f;
+            {% endif %}">
+              #{{post.tag}}
+            </div>
+            <div itemprop="author" class="d-none">{{post.author}}</div>
+            <div itemprop="dateModified" class="d-none">{{post.pub_date|date:'Y-m-d'}}</div>
+            <div class="d-none" itemprop="datePublished" >{{post.date|date:'Y-m-d'}}</div>
+            <!-- Blog Post Image -->
+            <img itemprop="image" src="/media/{{post.img}}" class="img-fluid blog__post-img mt-2" alt="{{post.alt_image}}" >
+          </div>
+          <span class="blog__post-title">{{post.title}}</span>
+      </div>
+      {% endfor %}
+      </div>
+      {% else %}
+      <div class="row mt-5 justify-content-center">
+      <div class="col-md-6 col-12 text-center my-auto"><span class="blog__post-none">Упс! Видимо по этой теме еще нет статей. Мы работаем над этим.</span>
+      </div>
+      <div class="col-md-4 col-12 my-auto">
+          <img class="img-fluid" src="{% static 'images/cat.png' %}">
+      </div>
+      </div>
+      {% endif %}
+      
+    </div>
+  </container>
+</div>
+</main>
+
+{% endblock %}

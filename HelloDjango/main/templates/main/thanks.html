@@ -1,0 +1,119 @@
+{% extends "main/wrapper.html" %}
+
+{% block content %}
+{% load static %}
+<title>{{article_detail.meta_title}}</title>
+<meta name="description" content="{{article_detail.meta_descr}}">
+<meta property="og:title" content="{{article_detail.title}}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="blog.lightwork.kz/{{article_detail.slug}}/" />
+<meta property="og:image" content="blog.lightwork.kz{{article_detail.img.url}}" />
+<meta property="og:description" content="{{article_detail.description}}" />
+<link rel="stylesheet" href="{% static 'css/post.css' %}">
+
+
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NLSZZ9K"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+{% include "main/header.html" %}
+
+<main>
+
+<div class="container-fluid thanks">
+  <div class="container thanks__container">
+    <div class="row align-items-center thanks__container-row">
+      <div class="col text-center">
+          <img class="img-fluid pb-4" src="{% static 'images/spasibo-za-zayavku.png' %}" alt="">
+        <h1 class="align-middle green thanks__header text-uppercase">Спасибо за заявку</h1>
+        <span class="thanks__container-descr green">менеджер свяжется с Вами в течение 5 минут</span>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+<div class="container-fluid bg-light">
+  <div class="container pt-4 pb-5">
+    <aside>
+      <span class="h4">Читайте также</span>
+      <div class="row pt-2">
+
+        {% for post in article_list %}
+        <div class="col-md-6 col-lg-4 col-sm-6 blog__post-wrapper" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+        <a itemprop="mainEntityOfPage" class="link-unstyled" href="{% url 'article_detail' slug=post.slug %}">
+          <!-- Blog Post Preview -->
+          <div class="blog__post-preview-hidden shadow pb-2 m-0 rounded p-2 mr-3" style= "background-color:
+          {% if post.tag.color == 'orange'%}
+          #ff9c00;
+          {% elif post.tag.color == 'green'%}
+          #75a24f;
+          {% elif post.tag.color == 'blue'%}
+          #26295c;
+          {% else %}
+          #75a24f;
+          {% endif %}">
+            <div class="row pb-2">
+              <div class="blog__post-preview-tag text-center p-1 col-sm-6 col-md-4 col-6 rounded ml-3">
+                #<div class="d-inline-block" itemprop="articleSection" >{{post.tag}}</div>
+              </div>
+            </div>
+
+            <div class="d-none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    			<meta itemprop="address" content="Усть-Каменогорск">
+    			<meta itemprop="telephone" content="8 777 316 96 91">
+    			<div class="d-none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        			<img class="d-none" itemprop="url image" src="//blog.lightwork.kz/static/images/logo.png"/>
+            		<meta itemprop="width" content="192">
+            		<meta itemprop="height" content="138">
+        		</div>
+        		<meta itemprop="name" content="Lightwork">
+        	 </div>
+
+            <span class="mt-2 blog__post-preview-title" itemprop="headline">{{post.title}}</span>
+            <p itemprop="description" class="blog__post-preview-content">{{post.description|safe|truncatechars:400}}</p>
+
+            <div class="py-4"></div>
+          </div>
+        </a>
+          <!-- Blog Post -->
+          <div class="blog__post shadow pt-1 mb-3" >
+            <!-- Blog Post Tag -->
+            <div class="blog__post-tag text-center p-2 col-sm-4 col-4 p-sm-1 rounded mt-1 ml-2"
+            style= "
+            background-color:
+            {% if post.tag.color == 'orange'%}
+            #ff9c00;
+            {% elif post.tag.color == 'green'%}
+            #75a24f;
+            {% elif post.tag.color == 'blue'%}
+            #26295c;
+            {% else %}
+            #75a24f;
+            {% endif %}">
+              #{{post.tag}}
+            </div>
+            <div itemprop="author" class="d-none">{{post.author}}</div>
+            <div itemprop="dateModified" class="d-none">{{post.pub_date|date:'Y-m-d'}}</div>
+            <div class="d-none" itemprop="datePublished" >{{post.date|date:'Y-m-d'}}</div>
+            <!-- Blog Post Image -->
+            <img itemprop="image" src="/media/{{post.img}}" class="img-fluid blog__post-img mt-2" alt="{{post.alt_image}}" >
+          </div>
+          <span class="blog__post-title">{{post.title}}</span>
+
+
+      </div>
+      {% endfor %}
+    </div>
+  </aside>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static 'js/jquery.waypoints.js' %}"></script>
+
+{% endblock %}

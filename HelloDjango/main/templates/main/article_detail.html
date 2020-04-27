@@ -1,0 +1,277 @@
+{% extends "main/wrapper.html" %}
+
+{% block content %}
+{% load static %}
+<title>{{article_detail.meta_title}}</title>
+<meta name="description" content="{{article_detail.meta_descr}}">
+<meta property="og:title" content="{{article_detail.title}}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="blog.lightwork.kz/{{article_detail.slug}}/" />
+<meta property="og:image" content="blog.lightwork.kz{{article_detail.img.url}}" />
+<meta property="og:description" content="{{article_detail.description}}" />
+<link rel="stylesheet" href="{% static 'css/post.css' %}">
+
+<style>
+
+   #mc-link, .mc-logo{
+       display: none !important;
+       opacity: 0 !important;
+   }
+   
+   div.article__content ol li::before {
+    color: {{article_detail.tag.rgb}};
+    background:
+    {% if article_detail.tag.color == 'orange'%}
+          #fff3eb;
+    {% elif article_detail.tag.color == 'green'%}
+          #f1fbea;
+    {% elif article_detail.tag.color == 'blue' %}
+          #e9eaff;
+    {% else %}
+          #f1fbea;
+    {% endif %}
+}
+    
+   div.article__content ul li::before {
+    background-image: url({% static 'images/check-mark_' %}{{article_detail.tag.color}}.svg);
+    }
+    
+   blockquote {
+     border-left: 3px solid {{article_detail.tag.rgb}};
+     padding-right: 30px;
+     padding-left: 30px;
+   }
+
+   .active-link, .article__content a:hover, .article__content a {
+     color: {{article_detail.tag.rgb}} !important;
+   }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NLSZZ9K"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+{% include "main/header.html" %}
+
+<main>
+
+<div class="container">
+<!-- Article -->
+<article itemscope="itemscope" itemtype="http://schema.org/Article">
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8 col-12">
+        <!-- Article Header -->
+        <div class="article__header px-3">
+          <div class="row">
+            <div class="col-9">
+              <i class="fa fa-calendar fa-fw" aria-hidden="true"></i><time datetime="{{article_detail.date|date:'d-m-Y'}}" class="article__date">{{article_detail.date|date:'d-m-Y'}}</time>
+              <meta itemprop="datePublished" content="{{article_detail.date|date:'Y-m-d'}}">
+              <div class="d-none" itemprop="dateModified">{{article_detail.pub_date|date:'Y-m-d'}}</div>
+              <meta itemprop="mainEntityOfPage" content="http://blog.lightwork.kz/statiya/{{article_detail.slug}}">
+              <div itemprop="author" class="d-none">{{article_detail.author}}</div>
+              <div class="d-none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    			<meta itemprop="address" content="Усть-Каменогорск">
+    			<meta itemprop="telephone" content="8 777 316 96 91">
+    			<div class="d-none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        			<img class="d-none" itemprop="url image" src="//blog.lightwork.kz/static/images/logo.png"/>
+            		<meta itemprop="width" content="192">
+            		<meta itemprop="height" content="138">
+        		</div>
+        		<meta itemprop="name" content="Lightwork">
+        	   </div>
+              <div class="article__time ml-4" style="display:inline-block;"><i class="fa fa-clock-o fa-fw" aria-hidden="true" style="font-size: 19px;"></i><div style="transform: translateY(-10%); display: inline-block;"> прочтешь за 5 минут</div></div>
+            </div>
+            <div class="col-3 text-right">
+                <div class="article__tag py-2 px-3" style="display:inline-block; transform: translateY(-10%);">#{{article_detail.tag}}</div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="row no-gutters">
+              <div class="col">
+                  <img itemprop="image" src="{{article_detail.img.url}}" class="img-fluid article__image mt-2" alt="{{article_detail.alt_image}}" >
+              </div>
+          </div>
+    </div>
+
+    <div class="col-4">
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-12 order-md-1 order-2">
+
+    <a class="link-unstyled" href="{% url 'article_detail' slug=article_detail.slug %}">
+          <!-- Blog Post Preview -->
+          <div class="blog__post-preview-hidden shadow pb-2 m-0 rounded p-2 mr-3" style= "background-color:
+          {{post.tag.rgb}}">
+            <div class="row pb-2">
+              <div class="blog__post-preview-tag text-center p-1 col-sm-6 col-md-4 col-6 rounded ml-3">
+                #<div class="d-inline-block" >{{post.tag}}</div>
+              </div>
+            </div>
+            <span class="mt-2 blog__post-preview-title" >{{post.title}}</span>
+            <p class="blog__post-preview-content">{{post.description|safe|truncatechars:400}}</p>
+
+            <div class="py-4"></div>
+          </div>
+        </a>
+    <!-- Article Content -->
+    <div class="article__content">
+      <h1 itemprop="headline">{{article_detail.title}}</h1>
+      <div itemprop="articleBody">{{article_detail.content|safe|linebreaks}}</div>
+    </div>
+
+  </div>
+  <div class="col-md-4 col-12 order-md-2 order-1">
+      <div class="sticky-top">
+        <aside>
+
+              <div class="content-navbar bg-light rounded">
+      </div>
+      </aside>
+    </div>
+</div>
+</div>
+</article>
+
+</div>
+</main>
+<div class="container-fluid bg-light pb-5">
+  <div class="container pt-4">
+      <div id="mc-container"></div>
+<script type="text/javascript">
+cackle_widget = window.cackle_widget || [];
+cackle_widget.push({widget: 'Comment', id: 70146});
+(function() {
+    var mc = document.createElement('script');
+    mc.type = 'text/javascript';
+    mc.async = true;
+    mc.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cackle.me/widget.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+})();
+</script>
+<a id="mc-link" href="http://cackle.me">Комментарии для сайта <b style="color:#4FA3DA">Cackl</b><b style="color:#F65077">e</b></a>
+    <aside>
+      <span class="h4">Читайте также</span>
+      <div class="row pt-2">
+
+        {% for post in article_list %}
+        <div class="col-md-6 col-lg-4 col-sm-6 blog__post-wrapper" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+        <a itemprop="mainEntityOfPage" class="link-unstyled" href="{% url 'article_detail' slug=post.slug %}">
+          <!-- Blog Post Preview -->
+          <div class="blog__post-preview-hidden shadow pb-2 m-0 rounded p-2 mr-3" style= "background-color:
+          {% if post.tag.color == 'orange'%}
+          #ff9c00;
+          {% elif post.tag.color == 'green'%}
+          #75a24f;
+          {% elif post.tag.color == 'blue'%}
+          #26295c;
+          {% else %}
+          #75a24f;
+          {% endif %}">
+            <div class="row pb-2">
+              <div class="blog__post-preview-tag text-center p-1 col-sm-6 col-md-4 col-6 rounded ml-3">
+                #<div class="d-inline-block" itemprop="articleSection" >{{post.tag}}</div>
+              </div>
+            </div>
+
+            <div class="d-none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    			<meta itemprop="address" content="Усть-Каменогорск">
+    			<meta itemprop="telephone" content="8 777 316 96 91">
+    			<div class="d-none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+        			<img class="d-none" itemprop="url image" src="//blog.lightwork.kz/static/images/logo.png"/>
+            		<meta itemprop="width" content="192">
+            		<meta itemprop="height" content="138">
+        		</div>
+        		<meta itemprop="name" content="Lightwork">
+        	 </div>
+
+            <span class="mt-2 blog__post-preview-title" itemprop="headline">{{post.title}}</span>
+            <p itemprop="description" class="blog__post-preview-content">{{post.description|safe|truncatechars:400}}</p>
+
+            <div class="py-4"></div>
+          </div>
+        </a>
+          <!-- Blog Post -->
+          <div class="blog__post shadow pt-1 mb-3" >
+            <!-- Blog Post Tag -->
+            <div class="blog__post-tag text-center p-2 col-sm-4 col-4 p-sm-1 rounded mt-1 ml-2"
+            style= "
+            background-color:
+            {% if post.tag.color == 'orange'%}
+            #ff9c00;
+            {% elif post.tag.color == 'green'%}
+            #75a24f;
+            {% elif post.tag.color == 'blue'%}
+            #26295c;
+            {% else %}
+            #75a24f;
+            {% endif %}">
+              #{{post.tag}}
+            </div>
+            <div itemprop="author" class="d-none">{{post.author}}</div>
+            <div itemprop="dateModified" class="d-none">{{post.pub_date|date:'Y-m-d'}}</div>
+            <div class="d-none" itemprop="datePublished" >{{post.date|date:'Y-m-d'}}</div>
+            <!-- Blog Post Image -->
+            <img itemprop="image" src="/media/{{post.img}}" class="img-fluid blog__post-img mt-2" alt="{{post.alt_image}}" >
+          </div>
+          <span class="blog__post-title">{{post.title}}</span>
+
+
+      </div>
+      {% endfor %}
+    </div>
+  </aside>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static 'js/jquery.waypoints.js' %}"></script>
+
+
+<script type="text/javascript">
+// Waypoints
+var waypoints = $('h2').waypoint(function(direction) {
+	var ide = this.element.id;
+	var iden = "#" + ide;
+	var text = document.getElementById(ide).innerHTML;
+  $('a[href="'+iden+'"]').addClass("active-link");
+  $('a[href!="'+iden+'"]').removeClass("active-link");
+  }
+)
+
+//Contant Navbar
+var content_navbar =
+  "<nav role='navigation' class='sticky-top'>" +
+    "<div class='content-navbar-header p-2'>СОДЕРЖАНИЕ</div>" + "<hr>" +
+    "<ul class='content-navbar-items'>";
+var newLine, el, title, link, id;
+$("h2").each(function() {
+  el = $(this);
+  title = el.text();
+  id = Number($('h2').index(el)) + 1;
+  $(this).attr("id",id);
+  link = "#" + id;
+  newLine =
+    "<li class='p-2 content-navbar-item'>" +
+      "<a href='" + link + "'>" +
+        title +
+      "</a>" +
+    "</li>";
+  content_navbar += newLine;
+});
+content_navbar +=
+   "</ul>" +
+  "</nav>";
+$(".content-navbar").prepend(content_navbar);
+
+$(document).ready(function() {
+    $("#mc-link").css("display", "none !important");
+});
+</script>
+{% endblock %}

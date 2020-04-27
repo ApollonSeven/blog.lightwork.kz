@@ -1,0 +1,242 @@
+/* Independent Rules */
+body {
+  line-height: 1.2;
+  font-family: 'Marmelad' ;
+}
+
+.link-unstyled,
+.link-unstyled:hover,
+.link-unstyled:active {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+
+/* Header Nav */
+.nav-time, .nav-phone {
+  color: #555;
+}
+
+.nav-phone-link {
+  border-bottom-style: dotted;
+  color: #26295c;
+}
+
+.nav-link {
+  font-size: 20px;
+  font-family: 'Marmelad';
+}
+
+
+/* Main Page */
+.blog__tags-title {
+  font-size: 3vw !important;
+  color: #2f3a4f;
+  font-weight: 400;
+}
+
+.blog__tags-option {
+  background-color: #bbbaba;
+  color: #fff;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  margin-top: .25rem;
+}
+
+.blog__tags-option > a,
+.blog__tags-option > a:hover,
+.blog__tags-option > a:active  {
+  color: inherit;
+  text-decoration: none;
+}
+
+.blog__post {
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+
+.blog__post-tag {
+  color: #fff;
+  position: inherit !important;
+  z-index: 0;
+}
+
+.blog__post-img {
+  -webkit-border-bottom-right-radius: 15px;
+  -webkit-border-bottom-left-radius: 15px;
+  -moz-border-radius-bottomright: 15px;
+  -moz-border-radius-bottomleft: 15px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.blog__post-title {
+  font-family: 'Marmelad';
+  color: #444444;
+  font-size: 1.5rem;
+}
+
+.blog__post-preview-title {
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.blog__post-preview-content {
+  color: #fff;
+}
+
+.blog__post-preview-tag {
+  color: #000;
+  background-color: #fff;
+
+}
+
+.blog__post-preview-hidden {
+  display: none;
+  position: absolute;
+}
+
+.blog__post-preview-hidden__active {
+  display: block !important;
+  position: absolute;
+  z-index: 1;
+}
+
+/* Article Page */
+
+.article-image {
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+
+
+
+.content-links {
+
+}
+
+h1 {
+  line-height: 1;
+  font-family: 'Marmelad';
+  color: #2d2d2d;
+}
+
+/* Bootstrap Five Columns */
+
+.col-xs-5th,
+.col-sm-5th,
+.col-md-5th,
+.col-lg-5th {
+  position: relative;
+  min-height: 1px;
+  padding-right: 10px;
+  padding-left: 10px;
+  width: 50%;
+  float: left;
+}
+.col-5-th {
+ -webkit-box-flex: 0;
+ -webkit-flex: 0 0 20%;
+ -ms-flex: 0 0 20%;
+ flex: 0 0 20%;
+ max-width: 20%;
+}
+@media (min-width: 768px) {
+.col-sm-5th {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 20%;
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+}
+@media (min-width: 992px) {
+.col-md-5th {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 20%;
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+}
+@media (min-width: 1200px) {
+.col-lg-5th {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 20%;
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+}
+
+
+@media only screen and (max-width: 992px) {
+
+  .col-md-5th.col-sm-5th {
+      width: 20%;
+      float: left;
+
+      -webkit-box-flex: 0;
+      -webkit-flex: 0 0 20%;
+      -ms-flex: 0 0 20%;
+      flex: 0 0 20%;
+      max-width: 20%;
+    }
+  }
+
+@media only screen and (max-width: 769px) {
+
+   .col-md-5th {
+        width:100%;
+        float:none;
+        display:block;
+
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 50%;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+   }
+
+  .col-md-5th.col-sm-5th {
+        width:50%;
+        float:none;
+        display:block;
+
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 50%;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+  }
+
+@media only screen and (max-width: 767px) {
+
+   .col-md-5th {
+        width:100%;
+        float:none;
+        display:block;
+
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 100%;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+   }
+
+  .col-md-5th.col-sm-5th {
+        width:100%;
+        float:none;
+        display:block;
+
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 100%;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+  }
